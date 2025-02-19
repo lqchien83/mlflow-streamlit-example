@@ -3,15 +3,21 @@ import mlflow
 import mlflow.sklearn
 import numpy as np
 import joblib
+import os
 
 logs_dir = "/content/drive/MyDrive/DaoTaoTinChi/TIN4653_HocMayVoiPython/BaiGiang/2025/Streamlit_MLFlow_GDrive/mlflow_logs"
 
+logs_uri = "file://" + logs_dir
+
 # Đặt đường dẫn đến mô hình đã lưu trên Google Drive
-MLFLOW_TRACKING_URI = logs_dir
+MLFLOW_TRACKING_URI = logs_uri
 
 # Load mô hình từ Google Drive
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
-model_path = "linear_regression_model"
+
+EXPERIMENT_ID = "685042325580286509"
+RUN_ID = "ef97695d49b24e56926b490c531ef15c"
+model_path = os.path.join(logs_dir, EXPERIMENT_ID, RUN_ID, "artifacts", "linear_regression_model")
 model = mlflow.sklearn.load_model(model_path)
 
 # Giao diện Streamlit
