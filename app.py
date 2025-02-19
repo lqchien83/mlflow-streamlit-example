@@ -12,12 +12,17 @@ logs_uri = "file://" + logs_dir
 # Đặt đường dẫn đến mô hình đã lưu trên Google Drive
 MLFLOW_TRACKING_URI = logs_uri
 
+st.write(MLFLOW_TRACKING_URI)
+
 # Load mô hình từ Google Drive
 mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
 
 EXPERIMENT_ID = "685042325580286509"
 RUN_ID = "ef97695d49b24e56926b490c531ef15c"
 model_path = os.path.join(logs_dir, EXPERIMENT_ID, RUN_ID, "artifacts", "linear_regression_model")
+
+st.write(model_path)
+
 model = mlflow.sklearn.load_model(model_path)
 
 # Giao diện Streamlit
